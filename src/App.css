@@ -77,3 +77,21 @@ html, body {
     transform: translateY(0);
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
+
+.App-nav {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.App-nav a {
+  color: #e10600; /* Formula 1 red */
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.App-nav a:hover {
+  color: #ffffff; /* White on hover */
+}
