@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import NextRaceCard from "./components/NextRaceCard";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <div className="App-content">
         <p>Welcome to the Formula One Pit Wall!</p>
         <p>Stay updated with live race data and insights.</p>
+        <NextRaceCard />
         <button className="App-button">Enter</button>
       </div>
     </div>
