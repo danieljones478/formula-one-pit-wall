@@ -78,10 +78,12 @@ html, body {
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Navigation Styles */
 .App-nav {
   display: flex;
   gap: 20px;
   margin-top: 10px;
+  justify-content: center;
 }
 
 .App-nav a {
@@ -94,4 +96,13 @@ html, body {
 
 .App-nav a:hover {
   color: #ffffff; /* White on hover */
+}
+
+/* Responsive Navigation for Mobile */
+@media (max-width: 768px) {
+  .App-nav {
+    flex-direction: column; /* Stack links vertically */
+    gap: 10px;
+    align-items: center;
+  }
 }

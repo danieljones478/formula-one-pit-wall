@@ -30,7 +30,6 @@ export const fetchMeetingData = async (
     );
     return response.data[0];
   } catch (error) {
-    console.error("Error fetching race data:", error);
-    throw error;
+    throw Error(`Error fetching race data: ${error}`);
   }
 };
