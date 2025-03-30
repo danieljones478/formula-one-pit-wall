@@ -20,14 +20,25 @@ const Header: React.FC = () => {
       </div>
 
       <div className="App-header-row">
-        <button className="App-nav-toggle" onClick={togglePane}>
+        <button
+          className="App-nav-toggle"
+          onClick={togglePane}
+          aria-label="Toggle navigation pane"
+        >
           {isPaneOpen ? "✕" : "☰"}
         </button>
         <h1 className="App-title">Formula One Pit Wall</h1>
       </div>
 
-      <nav className={`App-side-pane ${isPaneOpen ? "open" : ""}`}>
-        <button className="App-side-pane-close" onClick={togglePane}>
+      <nav
+        className={`App-side-pane ${isPaneOpen ? "open" : ""}`}
+        role="navigation"
+      >
+        <button
+          className="App-side-pane-close"
+          onClick={togglePane}
+          aria-label="Close navigation pane"
+        >
           ✕
         </button>
         <Link to="/" onClick={() => setIsPaneOpen(false)}>
