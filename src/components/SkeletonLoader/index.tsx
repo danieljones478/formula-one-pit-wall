@@ -12,7 +12,7 @@ type SkeletonLoaderProps = {
 
 const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({ lines }) => {
   return (
-    <div className="SkeletonLoader">
+    <div className="SkeletonLoader" role="status" aria-label="Loading...">
       <div className="skeleton-title"></div>
       {Array.from({ length: lines }).map((_, index) => (
         <div key={index} className="skeleton-line"></div>

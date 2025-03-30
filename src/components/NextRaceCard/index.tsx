@@ -41,7 +41,10 @@ const NextRaceCard: React.FC = () => {
           <p className="NextRaceCard-title">{raceData.meeting_name}</p>
           <p className="NextRaceCard-country">{raceData.country_name}</p>
           <p className="NextRaceCard-date">
-            Start Date: {new Date(raceData.date_start).toLocaleDateString()}
+            Start Date:{" "}
+            {raceData.date_start
+              ? new Date(raceData.date_start).toLocaleDateString()
+              : "Date not available"}
           </p>
         </>
       ) : (

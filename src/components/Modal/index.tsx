@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Modal.css";
 
 type ModalProps = {
@@ -8,28 +8,15 @@ type ModalProps = {
 };
 
 const Modal: React.FC<ModalProps> = ({ isVisible, onClose, children }) => {
-  const [isFadingOut, setIsFadingOut] = useState(false);
-
-  const handleClose = () => {
-    setIsFadingOut(true);
-    setTimeout(() => {
-      onClose();
-    }, 500); // Match the fade-out animation duration
-  };
-
-  useEffect(() => {
-    if (!isVisible) {
-      setIsFadingOut(false);
-    }
-  }, [isVisible]);
+  if (!isVisible) {
+    return null;
+  }
 
   return (
-    <div
-      className={`Modal ${isVisible ? "fade-in" : ""} ${isFadingOut ? "fade-out" : ""}`}
-    >
+    <div className="Modal fade-in" role="dialog" aria-modal="true">
       <div className="Modal-content">
         {children}
-        <button className="Modal-close-button" onClick={handleClose}>
+        <button className="Modal-close-button" onClick={onClose}>
           Enter
         </button>
       </div>
