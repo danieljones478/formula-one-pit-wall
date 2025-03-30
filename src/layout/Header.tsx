@@ -1,13 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
 const Header: React.FC = () => {
   const [isPaneOpen, setIsPaneOpen] = useState(false);
+  const paneRef = useRef<HTMLDivElement>(null);
 
   const togglePane = () => {
     setIsPaneOpen(!isPaneOpen);
   };
+
+  const handleOutsideClick = (event: MouseEvent) => {
+    if (paneRef.current && !paneRef.current.contains(event.target as Node)) {
+      setIsPaneOpen(false); // Close the pane if clicked outside
+    }
+  };
+
+  useEffect(() => {
+    if (isPaneOpen) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    } else {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [isPaneOpen]);
 
   return (
     <header className="App-header">
@@ -31,6 +50,7 @@ const Header: React.FC = () => {
       </div>
 
       <nav
+        ref={paneRef}
         className={`App-side-pane ${isPaneOpen ? "open" : ""}`}
         role="navigation"
       >

@@ -25,19 +25,19 @@ describe("Header Component", () => {
     renderHeader();
 
     const navPane = screen.getByRole("navigation");
-    expect(navPane).not.toHaveClass("open");
+    expect(navPane).not.toHaveClass("App-side-pane open");
 
     const toggleButton = screen.getByRole("button", {
       name: "Toggle navigation pane",
     });
     await userEvent.click(toggleButton);
-    expect(navPane).toHaveClass("open");
+    expect(navPane).toHaveClass("App-side-pane open");
 
     const closeButton = screen.getByRole("button", {
       name: "Close navigation pane",
     });
     await userEvent.click(closeButton);
-    expect(navPane).not.toHaveClass("open");
+    expect(navPane).not.toHaveClass("App-side-pane open");
   });
 
   test("closes the pane when a link is clicked", async () => {
@@ -51,20 +51,37 @@ describe("Header Component", () => {
     await userEvent.click(homeLink);
 
     const navPane = screen.getByRole("navigation");
-    expect(navPane).not.toHaveClass("open");
+    expect(navPane).not.toHaveClass("App-side-pane open");
+  });
+
+  test("closes the pane when clicking outside of it", async () => {
+    renderHeader();
+
+    const toggleButton = screen.getByRole("button", {
+      name: "Toggle navigation pane",
+    });
+    await userEvent.click(toggleButton);
+
+    const navPane = screen.getByRole("navigation");
+    expect(navPane).toHaveClass("App-side-pane open");
+
+    await userEvent.click(document.body);
+
+    expect(navPane).not.toHaveClass("App-side-pane open");
   });
 
   test("opens and closes the pane on repeated clicks", async () => {
     renderHeader();
+
     const navPane = screen.getByRole("navigation");
     const toggleButton = screen.getByRole("button", {
       name: "Toggle navigation pane",
     });
 
     await userEvent.click(toggleButton);
-    expect(navPane).toHaveClass("open");
+    expect(navPane).toHaveClass("App-side-pane open");
 
     await userEvent.click(toggleButton);
-    expect(navPane).not.toHaveClass("open");
+    expect(navPane).toHaveClass("App-side-pane");
   });
 });
