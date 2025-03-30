@@ -41,7 +41,7 @@ function App() {
         {!isModalVisible && (
           <>
             <Header />
-            <div className="App-content">
+            <div className="App-content-pages">
               <Routes>
                 <Route path="/" element={<h1>Home Page</h1>} />
                 <Route path="/drivers" element={<Drivers />} />

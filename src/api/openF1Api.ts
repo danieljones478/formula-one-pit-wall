@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Meetings } from "../types/MeetingsType";
+import { DriverInfo } from "../types/DriverInfo";
 
 const BASE_URL = "https://api.openf1.org/v1";
 
@@ -21,15 +22,46 @@ const apiClient = axios.create({
  * @returns A promise that resolves to the meeting data.
  */
 export const fetchMeetingData = async (
-  year: string,
-  countryName: string,
-): Promise<Meetings> => {
+  year?: string,
+  countryName?: string,
+): Promise<Meetings[]> => {
   try {
+    const params = new URLSearchParams();
+    if (year) params.append("year", year);
+    if (countryName) params.append("country_name", countryName);
+
     const response = await apiClient.get<Meetings[]>(
-      `/meetings?year=${year}&country_name=${countryName}`,
+      `/meetings?${params.toString()}`,
     );
-    return response.data[0];
+    return response.data;
   } catch (error) {
     throw Error(`Error fetching race data: ${error}`);
+  }
+};
+
+/**
+ * Provides information about drivers for current season.
+ * @param meeting_key - The key of the meeting.
+ * @returns A promise that resolves to the driver information.
+ */
+
+export const fetchDrivers = async (
+  meeting_key: number,
+): Promise<DriverInfo[]> => {
+  try {
+    const response = await apiClient.get<DriverInfo[]>(
+      `/drivers?meeting_key=${meeting_key}`,
+    );
+
+    // Remove duplicates by driver_number
+    const uniqueDrivers = response.data.filter(
+      (driver, index, self) =>
+        index ===
+        self.findIndex((d) => d.driver_number === driver.driver_number),
+    );
+
+    return uniqueDrivers;
+  } catch (error) {
+    throw Error(`Error fetching drivers: ${error}`);
   }
 };

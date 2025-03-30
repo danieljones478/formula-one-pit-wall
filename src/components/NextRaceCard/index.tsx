@@ -5,16 +5,20 @@ import { Meetings } from "../../types/MeetingsType";
 import SkeletonLoader from "../SkeletonLoader";
 
 const NextRaceCard: React.FC = () => {
-  const [raceData, setRaceData] = useState<Meetings>();
+  const [raceData, setRaceData] = useState<Meetings | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     const getNextRace = async () => {
       try {
         setLoading(true);
-        const data = await fetchMeetingData("2025", "Australia");
-        setRaceData(data);
+        const data = await fetchMeetingData(currentYear.toString());
+        const nextRace = data.length > 0 ? data[data.length - 1] : null;
+
+        setRaceData(nextRace);
       } catch (err) {
         setError("Failed to fetch next race data.");
       } finally {
