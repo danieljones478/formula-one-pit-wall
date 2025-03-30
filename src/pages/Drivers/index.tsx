@@ -41,14 +41,14 @@ const Drivers: React.FC = () => {
 
   return (
     <div>
-      <h2>Drivers</h2>
+      <h2>Current drivers on the grid for the season</h2>
       <div className="Drivers-list-container">
         {loading
           ? Array.from({ length: 6 }).map((_, index) => (
               <DriverCard key={index} loading={true} />
             ))
           : drivers.map((driver, index) => (
-              <DriverCard key={index} driver={driver} loading={false} />
+              <DriverCard key={index} driver={driver} loading={loading} />
             ))}
       </div>
     </div>

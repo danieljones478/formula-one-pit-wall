@@ -48,7 +48,7 @@ const NextRaceCard: React.FC = () => {
           </p>
         </>
       ) : (
-        <SkeletonLoader lines={3} />
+        <SkeletonLoader lines={2} />
       )}
     </div>
   );
