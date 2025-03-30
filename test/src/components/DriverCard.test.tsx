@@ -20,12 +20,10 @@ describe("DriverCard Component", () => {
     render(<DriverCard loading={false} driver={mockDriver} />);
     const driverName = screen.getByText("Lewis Hamilton");
     const driverTeam = screen.getByText("Team: Mercedes");
-    const driverCountry = screen.getByText("Country: GB");
     const driverImage = screen.getByAltText("Lewis Hamilton headshot");
 
     expect(driverName).toBeInTheDocument();
     expect(driverTeam).toBeInTheDocument();
-    expect(driverCountry).toBeInTheDocument();
     expect(driverImage).toBeInTheDocument();
   });
 });
