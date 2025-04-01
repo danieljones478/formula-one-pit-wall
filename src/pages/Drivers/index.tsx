@@ -40,7 +40,7 @@ const Drivers: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="Drivers-container">
       <h1>Current drivers on the grid for the season</h1>
       <div className="Drivers-list-container">
         {loading
