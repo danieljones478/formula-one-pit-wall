@@ -44,7 +44,7 @@ const Header: React.FC = () => {
           onClick={togglePane}
           aria-label="Toggle navigation pane"
         >
-          {isPaneOpen ? "✕" : "☰"}
+          ☰
         </button>
         <h1 className="App-title">Formula One Pit Wall</h1>
       </div>
