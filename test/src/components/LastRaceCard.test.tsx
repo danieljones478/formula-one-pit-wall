@@ -1,11 +1,11 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import * as api from "../../../src/api/openF1Api";
-import NextRaceCard from "../../../src/components/NextRaceCard";
+import LastRaceCard from "../../../src/components/LastRaceCard";
 
 jest.mock("../../../src/api/openF1Api");
 
-describe("NextRaceCard Component", () => {
+describe("LastRaceCard Component", () => {
   test("displays a skeleton loader while loading", async () => {
     jest.spyOn(api, "fetchMeetingData").mockImplementation(
       () =>
@@ -14,7 +14,7 @@ describe("NextRaceCard Component", () => {
         }),
     );
 
-    render(<NextRaceCard />);
+    render(<LastRaceCard />);
 
     const skeletonLoader = screen.getByRole("status", { name: "Loading..." });
     expect(skeletonLoader).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe("NextRaceCard Component", () => {
 
     jest.spyOn(api, "fetchMeetingData").mockResolvedValue(mockRaceData);
 
-    render(<NextRaceCard />);
+    render(<LastRaceCard />);
 
     const raceName = await screen.findByText("Monaco Grand Prix");
     const countryName = await screen.findByText("Monaco");
@@ -48,7 +48,7 @@ describe("NextRaceCard Component", () => {
       .spyOn(api, "fetchMeetingData")
       .mockRejectedValue(new Error("API Error"));
 
-    render(<NextRaceCard />);
+    render(<LastRaceCard />);
 
     const errorMessage = await screen.findByText(
       "Failed to fetch next race data.",
