@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./layout/Header";
-import LastRaceCard from "./components/LastRaceCard";
 import Drivers from "./pages/Drivers";
 import RaceData from "./pages/RaceData";
 import LiveDriverPositions from "./pages/LiveDriverPositions";
 import Modal from "./components/Modal";
+import TeamRadio from "./pages/TeamRadio";
 
 function App() {
   const [isModalVisible, setIsModalVisible] = useState(true);
@@ -49,6 +49,7 @@ function App() {
                   path="/live-driver-positions"
                   element={<LiveDriverPositions />}
                 />
+                <Route path="/team-radio" element={<TeamRadio />} />
               </Routes>
             </div>
           </>

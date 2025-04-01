@@ -73,6 +73,9 @@ const Header: React.FC = () => {
         <Link to="/live-driver-positions" onClick={() => setIsPaneOpen(false)}>
           Live Driver Positions
         </Link>
+        <Link to="/team-radio" onClick={() => setIsPaneOpen(false)}>
+          Team Radio
+        </Link>
       </nav>
     </header>
   );

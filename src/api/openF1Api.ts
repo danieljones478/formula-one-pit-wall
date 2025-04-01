@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Meetings } from "../types/MeetingsType";
 import { DriverInfo } from "../types/DriverInfo";
+import { TeamRadio } from "../types/TeamRadio";
 
 const BASE_URL = "https://api.openf1.org/v1";
 
@@ -21,6 +22,7 @@ const apiClient = axios.create({
  * @param countryName - The name of the country where the meeting is held.
  * @returns A promise that resolves to the meeting data.
  */
+
 export const fetchMeetingData = async (
   year?: string,
   countryName?: string,
@@ -63,5 +65,26 @@ export const fetchDrivers = async (
     return uniqueDrivers;
   } catch (error) {
     throw Error(`Error fetching drivers: ${error}`);
+  }
+};
+
+/**
+ * Provides a collection of radio exchanges between Formula 1 drivers and their respective teams during sessions.
+ * @param driver_number - The number of the driver.
+ * @param meeting_key - The key of the meeting.
+ * @returns A promise that resolves to the team radio data.
+ */
+
+export const fetchTeamRadio = async (
+  driver_number: number,
+  meeting_key: number,
+): Promise<TeamRadio[]> => {
+  try {
+    const response = await apiClient.get<TeamRadio[]>(
+      `/team_radio?driver_number=${driver_number}&meeting_key=${meeting_key}`,
+    );
+    return response.data;
+  } catch (error) {
+    throw Error(`Error fetching team radio: ${error}`);
   }
 };
