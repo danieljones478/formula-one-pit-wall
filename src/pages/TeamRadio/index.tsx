@@ -97,9 +97,7 @@ const TeamRadioPage: React.FC = () => {
         </div>
       </div>
 
-      {loading ? (
-        <div className="loader">Loading...</div>
-      ) : (
+      {!loading && selectedDriver && (
         <div className="team-radio-list">
           {teamRadios.map((radio, index) => {
             // Match the session using the session_key from the team radio
