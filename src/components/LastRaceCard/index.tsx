@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { fetchMeetingData } from "../../api/openF1Api";
-import "./NextRaceCard.css";
+import "./LastRaceCard.css";
 import { Meetings } from "../../types/MeetingsType";
 import SkeletonLoader from "../SkeletonLoader";
 
-const NextRaceCard: React.FC = () => {
+const LastRaceCard: React.FC = () => {
   const [raceData, setRaceData] = useState<Meetings | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -30,17 +30,17 @@ const NextRaceCard: React.FC = () => {
   }, []);
 
   if (error) {
-    return <div className="NextRaceCard-error">{error}</div>;
+    return <div className="LastRaceCard-error">{error}</div>;
   }
 
   return (
-    <div className="NextRaceCard">
-      <h2>Next Race Weekend</h2>
+    <div className="LastRaceCard">
+      <h2>Previous Race Weekend</h2>
       {raceData && !loading ? (
         <>
-          <p className="NextRaceCard-title">{raceData.meeting_name}</p>
-          <p className="NextRaceCard-country">{raceData.country_name}</p>
-          <p className="NextRaceCard-date">
+          <p className="LastRaceCard-title">{raceData.meeting_name}</p>
+          <p className="LastRaceCard-country">{raceData.country_name}</p>
+          <p className="LastRaceCard-date">
             Start Date:{" "}
             {raceData.date_start
               ? new Date(raceData.date_start).toLocaleDateString()
@@ -54,4 +54,4 @@ const NextRaceCard: React.FC = () => {
   );
 };
 
-export default NextRaceCard;
+export default LastRaceCard;

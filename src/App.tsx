@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./layout/Header";
-import NextRaceCard from "./components/NextRaceCard";
+import LastRaceCard from "./components/LastRaceCard";
 import Drivers from "./pages/Drivers";
 import RaceData from "./pages/RaceData";
 import LiveDriverPositions from "./pages/LiveDriverPositions";
@@ -32,7 +32,7 @@ function App() {
             <div className="App-content">
               <p>Welcome to the Formula One Pit Wall!</p>
               <p>Stay updated with live race data and insights.</p>
-              <NextRaceCard />
+              <LastRaceCard />
             </div>
           </Modal>
         )}
