@@ -3,6 +3,7 @@ import {
   fetchDrivers,
   fetchTeamRadio,
   fetchMeetingData,
+  fetchSessions,
 } from "../../api/openF1Api";
 import { DriverInfo } from "../../types/DriverInfo";
 import { TeamRadio } from "../../types/TeamRadio";
@@ -10,6 +11,7 @@ import "./TeamRadio.css";
 
 const TeamRadioPage: React.FC = () => {
   const [drivers, setDrivers] = useState<DriverInfo[]>([]);
+  const [sessions, setSessions] = useState<any[]>([]);
   const [selectedDriver, setSelectedDriver] = useState<number | null>(null);
   const [meetingKey, setMeetingKey] = useState<number | null>(null);
   const [teamRadios, setTeamRadios] = useState<TeamRadio[]>([]);
@@ -39,6 +41,10 @@ const TeamRadioPage: React.FC = () => {
         if (lastMeetingKey !== undefined) {
           const driversData = await fetchDrivers(lastMeetingKey);
           setDrivers(driversData);
+
+          // Fetch sessions for the last meeting
+          const sessionsData = await fetchSessions(lastMeetingKey);
+          setSessions(sessionsData);
         } else {
           throw new Error("Meeting key is undefined.");
         }
@@ -67,7 +73,7 @@ const TeamRadioPage: React.FC = () => {
 
   return (
     <div className="team-radio-page">
-      <h1>Team Radio</h1>
+      <h1>Team Radio for Previous Race Weekend</h1>
 
       {error && <div className="error-message">{error}</div>}
 
@@ -95,31 +101,34 @@ const TeamRadioPage: React.FC = () => {
         <div className="loader">Loading...</div>
       ) : (
         <div className="team-radio-list">
-          {teamRadios.map((radio, index) => (
-            <div key={index} className="team-radio-item">
-              <span className="timestamp">
-                {new Intl.DateTimeFormat(navigator.language, {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  second: "2-digit",
-                }).format(new Date(radio.date || "0"))}
-              </span>
-              <audio controls>
-                <source src={radio.recording_url} type="audio/mpeg" />
-                <track
-                  kind="captions"
-                  src={`captions/${radio.driver_number}.vtt`}
-                  srcLang="en"
-                  label="English captions"
-                  default
-                />
-                Your browser does not support the audio element.
-              </audio>
-            </div>
-          ))}
+          {teamRadios.map((radio, index) => {
+            // Match the session using the session_key from the team radio
+            const session = sessions.find(
+              (s) => s.session_key === radio.session_key,
+            );
+            return (
+              <div key={index} className="team-radio-item">
+                <div className="session-info">
+                  <span className="session-name">
+                    {session?.session_name || "Unknown Session"}
+                  </span>
+                  <span className="session-type">
+                    {session?.session_type || "Unknown Type"}
+                  </span>
+                </div>
+                <audio controls>
+                  <source src={radio.recording_url} type="audio/mpeg" />
+                  <track
+                    kind="captions"
+                    srcLang="en"
+                    label="English captions"
+                    default
+                  />
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
+            );
+          })}
         </div>
       )}
     </div>

@@ -2,6 +2,7 @@ import axios from "axios";
 import { Meetings } from "../types/MeetingsType";
 import { DriverInfo } from "../types/DriverInfo";
 import { TeamRadio } from "../types/TeamRadio";
+import { Sessions } from "../types/Sessions";
 
 const BASE_URL = "https://api.openf1.org/v1";
 
@@ -86,5 +87,24 @@ export const fetchTeamRadio = async (
     return response.data;
   } catch (error) {
     throw Error(`Error fetching team radio: ${error}`);
+  }
+};
+
+/**
+ * Provides information about sessions.
+ * @param meeting_key - The key of the meeting.
+ * @returns A promise that resolves to the session data.
+ */
+
+export const fetchSessions = async (
+  meeting_key: number,
+): Promise<Sessions[]> => {
+  try {
+    const response = await apiClient.get<Sessions[]>(
+      `/sessions?meeting_key=${meeting_key}`,
+    );
+    return response.data;
+  } catch (error) {
+    throw Error(`Error fetching sessions: ${error}`);
   }
 };

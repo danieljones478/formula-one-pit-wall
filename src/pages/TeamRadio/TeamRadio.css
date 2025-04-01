@@ -30,7 +30,6 @@ h1 {
 .filter label {
   font-weight: bold;
   font-size: 1rem;
-  color: #555;
 }
 
 .filter select,
@@ -90,15 +89,31 @@ h1 {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
-.timestamp {
-  font-size: 0.9rem;
-  color: #888;
-  font-weight: bold;
-}
-
 .message {
   font-size: 1rem;
   color: #333;
+}
+
+.session-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.session-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.session-type {
+  font-size: 1rem;
+  color: #666;
+  text-transform: capitalize;
 }
 
 audio {
