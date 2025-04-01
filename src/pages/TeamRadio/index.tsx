@@ -99,34 +99,40 @@ const TeamRadioPage: React.FC = () => {
 
       {!loading && selectedDriver && (
         <div className="team-radio-list">
-          {teamRadios.map((radio, index) => {
-            // Match the session using the session_key from the team radio
-            const session = sessions.find(
-              (s) => s.session_key === radio.session_key,
-            );
-            return (
-              <div key={index} className="team-radio-item">
-                <div className="session-info">
-                  <span className="session-name">
-                    {session?.session_name || "Unknown Session"}
-                  </span>
-                  <span className="session-type">
-                    {session?.session_type || "Unknown Type"}
-                  </span>
+          {teamRadios.length > 0 ? (
+            teamRadios.map((radio, index) => {
+              // Match the session using the session_key from the team radio
+              const session = sessions.find(
+                (s) => s.session_key === radio.session_key,
+              );
+              return (
+                <div key={index} className="team-radio-item">
+                  <div className="session-info">
+                    <span className="session-name">
+                      {session?.session_name || "Unknown Session"}
+                    </span>
+                    <span className="session-type">
+                      {session?.session_type || "Unknown Type"}
+                    </span>
+                  </div>
+                  <audio controls>
+                    <source src={radio.recording_url} type="audio/mpeg" />
+                    <track
+                      kind="captions"
+                      srcLang="en"
+                      label="English captions"
+                      default
+                    />
+                    Your browser does not support the audio element.
+                  </audio>
                 </div>
-                <audio controls>
-                  <source src={radio.recording_url} type="audio/mpeg" />
-                  <track
-                    kind="captions"
-                    srcLang="en"
-                    label="English captions"
-                    default
-                  />
-                  Your browser does not support the audio element.
-                </audio>
-              </div>
-            );
-          })}
+              );
+            })
+          ) : (
+            <p className="no-team-radio-message">
+              No team radio messages available for this driver.
+            </p>
+          )}
         </div>
       )}
     </div>

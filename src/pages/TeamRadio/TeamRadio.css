@@ -126,3 +126,10 @@ audio {
 audio::-webkit-media-controls {
   border-radius: 8px;
 }
+
+.no-team-radio-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 20px;
+}
