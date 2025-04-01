@@ -30,9 +30,8 @@ function App() {
               <h1 className="App-title">Formula One Pit Wall</h1>
             </header>
             <div className="App-content">
-              <p>Welcome to the Formula One Pit Wall!</p>
-              <p>Stay updated with live race data and insights.</p>
-              <LastRaceCard />
+              <h1>Welcome to the Formula One Pit Wall!</h1>
+              <h2>Stay updated with live race data and insights.</h2>
             </div>
           </Modal>
         )}
