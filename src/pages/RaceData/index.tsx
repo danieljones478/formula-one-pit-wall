@@ -5,28 +5,18 @@ import "./RaceData.css";
 
 const RaceData: React.FC = () => {
   const [year, setYear] = useState<string>("2025");
-  const [isLoading, setIsLoading] = useState(false);
   const [races, setRaces] = useState<Meetings[]>();
-  const [error, setError] = useState<string>();
 
   const years = (back: number) => {
     const year = new Date().getFullYear();
-    return Array.from({ length: back }, (v, i) => year - back + i + 1);
+    return Array.from({ length: back }, (_v, i) => year - back + i + 1);
   };
 
   useEffect(() => {
     const fetchInitialData = async () => {
-      try {
-        setIsLoading(true);
-
-        const meetings = await fetchMeetingData(year?.toString());
-
-        setRaces(meetings);
-      } catch (err) {
-        setError("Failed to fetch initial data.");
-      } finally {
-        setIsLoading(false);
-      }
+      await fetchMeetingData(year?.toString()).then((response) =>
+        setRaces(response),
+      );
     };
 
     fetchInitialData();
