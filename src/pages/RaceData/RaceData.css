@@ -1,0 +1,14 @@
+.filterYear select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filterYear select:hover {
+  border-color: #888;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
