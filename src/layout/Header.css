@@ -9,7 +9,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }
@@ -17,6 +16,7 @@
 .App-logo-row {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
   margin-bottom: 10px;
 }
@@ -28,9 +28,9 @@
 .App-header-row {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
-  padding: 0 20px;
+  padding: 0; 
   position: relative;
 }
 
@@ -41,23 +41,20 @@
   letter-spacing: 2px;
   color: #e10600;
   text-align: center;
+  flex: 1; 
 }
 
 /* Hamburger Menu Button */
 .App-nav-toggle {
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  font-size: 1.8rem;
   background: none;
   border: none;
   color: #ffffff;
-  font-size: 1.8rem;
   cursor: pointer;
   display: flex;
-  padding-left: 24px;
   align-items: center;
   justify-content: center;
+  padding-left: 16px;
 }
 
 /* Modal Styles */
@@ -91,6 +88,7 @@
   margin-top: 10px;
   justify-content: center;
   transition: max-height 0.3s ease;
+  padding-right: 20px; 
 }
 
 .App-nav a {
@@ -155,7 +153,12 @@
 /* Responsive Navigation for Mobile */
 @media (max-width: 768px) {
   .App-header {
-    padding: 10px 15px;
+    padding-top: 16px;
+  }
+
+  .App-header-row {
+    position: relative;
+    flex-direction: column-reverse; 
   }
 
   .App-logo {
@@ -168,5 +171,9 @@
 
   .App-nav-toggle {
     font-size: 2rem;
+  }
+
+  .App-content-pages {
+    margin-top: 140px;
   }
 }

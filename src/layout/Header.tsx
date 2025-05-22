@@ -44,7 +44,7 @@ const Header: React.FC = () => {
           onClick={togglePane}
           aria-label="Toggle navigation pane"
         >
-          {isPaneOpen ? "✕" : "☰"}
+          ☰
         </button>
         <h1 className="App-title">Formula One Pit Wall</h1>
       </div>
@@ -72,6 +72,9 @@ const Header: React.FC = () => {
         </Link>
         <Link to="/live-driver-positions" onClick={() => setIsPaneOpen(false)}>
           Live Driver Positions
+        </Link>
+        <Link to="/team-radio" onClick={() => setIsPaneOpen(false)}>
+          Team Radio
         </Link>
       </nav>
     </header>

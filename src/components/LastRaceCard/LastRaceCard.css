@@ -3,6 +3,7 @@
   color: #ffffff;
   border: 2px solid #e10600;
   border-radius: 10px;
+  display: inline-block;
   padding: 20px;
   margin: 20px;
   width: 300px;

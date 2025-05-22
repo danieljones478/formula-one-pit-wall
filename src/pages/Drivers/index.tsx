@@ -40,8 +40,8 @@ const Drivers: React.FC = () => {
   }
 
   return (
-    <div>
-      <h2>Current drivers on the grid for the season</h2>
+    <div className="Drivers-container">
+      <h1>Current drivers on the grid for the season</h1>
       <div className="Drivers-list-container">
         {loading
           ? Array.from({ length: 6 }).map((_, index) => (

@@ -33,7 +33,7 @@ module.exports = (env, argv) => {
     plugins: [
       new HtmlWebpackPlugin({
         template: "./public/index.html",
-        favicon: "./public/favicon.ico",
+        favicon: "./public/assets/icons/image.ico",
       }),
       new CleanWebpackPlugin(), // Cleans the output directory
       !isProduction && new ReactRefreshWebpackPlugin(), // Add React Refresh in development
